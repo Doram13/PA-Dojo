@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <title>CsED</title>
+    <title>Show Series</title>
 
     <!-- Import Montserrat font -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -45,6 +45,7 @@
     </header>
     <section>
         <h1 class="title text-center">Welcome page</h1>
+
         <div class="card">
             <h2>Welcome TV show lovers!</h2>
             <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
@@ -56,20 +57,24 @@
             </p>
         </div>
         <div class="card">
+<div align="center" id="next_page">
+            <form><button class="action-column" formaction="/next-page/{{ page_num }}/{{ order }}"> Next Page</button></form>
+        </div>
+
             <table>
                 <thead><tr>
                     {% for head in header %}
-                        <th> {{ head }}</th>
+                        <th><a href="/order-list?order_by={{ head }}&page_num={{ page_num }}&order={{ order }}"> {{ head }}</a></th>
                     {% endfor %}
                 </tr></thead>
 
                 {% for show in shows %}
                     <tr>
-                    <td>{{ show['title'] }}</td>
+                    <td align="center"><form> <button  class="action-column" formaction="/detailed/{{ show['id'] }}">{{ show['title'] }}</button></form></td>
                     <td>{{ show['year'] }}</td>
                     <td>{{ show['runtime'] }}</td>
-                    <td>{{ show['genre'] }}</td>
                     <td>{{ show['rating'] }}</td>
+                    <td>{{ show['genre'] }}</td>
                     <td>{{ show['trailer'] }}</td>
                     <td>{{ show['homepage'] }}</td>
                     </tr>
@@ -77,6 +82,10 @@
             </table>
         </div>
     </section>
+<div align="center" id="next_page">
+    <form><button class="action-column" formaction="/next-page/{{ page_num }}/{{ order }}"> Next Page</button></form>
+        </div>
+<br><br><br>
     <footer>
         Copyright, bla-bla
     </footer>

@@ -87,6 +87,16 @@ def execute_select(statement, variables=None):
     return result_set
 
 
+def execute_select_one(statement, variables=None):
+
+    result_set = []
+    with establish_connection() as conn:
+        with conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
+            cursor.execute(statement, variables)
+            result_set = cursor.fetchone()
+    return result_set
+
+
 def execute_dml_statement(statement, variables=None):
     """
     Execute data manipulation query statement (optionally parameterized)
